@@ -9,7 +9,6 @@ public class ProgressionManager : MonoBehaviour
     public int currentEventIndex;
     public EventProgression currentEventProgression;
 
-
     private void Start()
     {
         currentEventProgression = eventProgressions[0];
@@ -29,12 +28,18 @@ public class ProgressionManager : MonoBehaviour
         if (currentEventProgression.complete)
         {
             currentEventProgression.completeEvent?.Invoke();
+            
+            if(currentEventProgression.beginDialogSegment != null && DialogManager.instance != null)
+                DialogManager.instance.PlayDialog(currentEventProgression.beginDialogSegment);
+            
             if (currentEventIndex < eventProgressions.Length - 1)
             {
                 currentEventIndex++;
 
                 currentEventProgression = eventProgressions[currentEventIndex];
                 eventProgressions[currentEventIndex].beginEvent?.Invoke();
+                if (currentEventProgression.completeDialogSegment != null && DialogManager.instance != null)
+                    DialogManager.instance.PlayDialog(currentEventProgression.completeDialogSegment);
             }
         }
     }
@@ -46,7 +51,9 @@ public class EventProgression
     public bool complete;
     public Task[] tasks;
     public UnityEvent beginEvent;
+    public DialogSequence beginDialogSegment;
     public UnityEvent completeEvent;
+    public DialogSequence completeDialogSegment;
 }
 
 

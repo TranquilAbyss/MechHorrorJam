@@ -6,6 +6,7 @@ public class Task : MonoBehaviour
 {
     public bool complete;
     public string taskName;
+    public DialogSequence completeDialogSegment;
 
     [Header("Unit Test")]
     public bool testComplete;
@@ -14,7 +15,7 @@ public class Task : MonoBehaviour
     {
         if (testComplete)
         {
-            complete = true;
+            CompleteTask();
             testComplete = false;
         }
     }
@@ -22,5 +23,7 @@ public class Task : MonoBehaviour
     public void CompleteTask()
     {
         complete = true;
+        if (completeDialogSegment != null && DialogManager.instance != null)
+            DialogManager.instance.PlayDialog(completeDialogSegment);
     }
 }
