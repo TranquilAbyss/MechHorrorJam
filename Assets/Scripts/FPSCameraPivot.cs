@@ -15,42 +15,46 @@ public class FPSCameraPivot : MonoBehaviour {
 	public float maximumY = 60F;
 
 	private bool toggleMouseLock = false;
-	
-	float rotationY = 0F;
-	
+
+	float currentRotationX = 0F;
+	float currentRotationY = 0F;
+
 	void Update ()
 	{
-
-		if(Input.GetKeyDown(KeyCode.LeftControl)) toggleMouseLock = !toggleMouseLock;
-
-		if(toggleMouseLock == true) 
+		if (Input.GetKey(KeyCode.LeftControl)) toggleMouseLock = !toggleMouseLock;
+		if (toggleMouseLock) 
 		{   
-            Cursor.visible = true;
+            Cursor.visible = false;
 
 			if (axes == RotationAxes.MouseXAndY)
 			{
-				float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
-				
-				rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-				rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
-				
-				transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+				currentRotationX += Input.GetAxis("Mouse X") * sensitivityX;
+				currentRotationX = Mathf.Clamp(currentRotationX, minimumX, maximumX);
+
+				currentRotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+				currentRotationY = Mathf.Clamp (currentRotationY, minimumY, maximumY);
+
+				transform.localEulerAngles = new Vector3(-currentRotationY, currentRotationX, 0);
+
 			}
 			else if (axes == RotationAxes.MouseX)
 			{
-				transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+				currentRotationX += Input.GetAxis("Mouse X") * sensitivityX;
+				currentRotationX = Mathf.Clamp(currentRotationX, minimumX, maximumX);
+
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, -currentRotationX, 0);
 			}
 			else
 			{
-				rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-				rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+				currentRotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+				currentRotationY = Mathf.Clamp (currentRotationY, minimumY, maximumY);
 				
-				transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+				transform.localEulerAngles = new Vector3(-currentRotationY, transform.localEulerAngles.y, 0);
 			}
 		}
 		else
 		{
-            Cursor.visible = false;
+            Cursor.visible = true;
 		}	
 	}
 	

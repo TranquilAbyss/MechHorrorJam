@@ -6,11 +6,16 @@ public class MechControls : MonoBehaviour
 {
     public Rigidbody rigid;
 
-    private float velocityMagnitudeLimit = 0;
+    private float currentThrottleSpeed = 0;
+    public float throttleIncrement = 10;
+    public float maxSpeed = 40;
+    public float minSpeed = -40;
+    public float moveForce = 20;
+
     public float turnForce = 150;
     public float maxTurnSpeed = 0.5f;
-    public float throttleChange = 20;
-    
+    public bool isGrounded = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,36 +25,49 @@ public class MechControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO max throttle limit
         if (Input.GetKeyDown(KeyCode.W))
         {
-            velocityMagnitudeLimit += throttleChange;
+            currentThrottleSpeed += throttleIncrement;
+            if (currentThrottleSpeed > maxSpeed)
+            {
+                currentThrottleSpeed = maxSpeed;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            velocityMagnitudeLimit += -throttleChange;
+            currentThrottleSpeed += -throttleIncrement;
+            if (currentThrottleSpeed < minSpeed)
+            {
+                currentThrottleSpeed = minSpeed;
+            }
         }
     }
     
     void FixedUpdate()
     {
-        //TODO if ground check 
-        if (true)
+        //TODO grounded check 
+        if (isGrounded)
         {
             // throttle
-            if (velocityMagnitudeLimit > 0 && rigid.velocity.magnitude < velocityMagnitudeLimit)
+            if (currentThrottleSpeed > 0 && rigid.velocity.magnitude < currentThrottleSpeed)
             {
-                rigid.AddForce(throttleChange * transform.forward);
+                rigid.AddForce(moveForce * transform.forward);
             }
-            else if (velocityMagnitudeLimit < 0 && rigid.velocity.magnitude > velocityMagnitudeLimit)
+            else if (currentThrottleSpeed < 0 && rigid.velocity.magnitude > currentThrottleSpeed)
             {
-                rigid.AddForce(-throttleChange * transform.forward);
+                rigid.AddForce(-moveForce * transform.forward);
             }
 
             // turning
             if (rigid.angularVelocity.y < maxTurnSpeed && rigid.angularVelocity.y > -maxTurnSpeed)
             {
+                float preturnMagnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
+                
                 rigid.AddTorque(Input.GetAxis("Horizontal") * turnForce * transform.up);
+
+                //eliminates sliding during turns while maintiain speed.
+                Vector3 localVelocity = rigid.transform.InverseTransformDirection(rigid.velocity);    
+                rigid.velocity = transform.forward * preturnMagnitude * Mathf.Sign(localVelocity.z) + new Vector3(0, rigid.velocity.y, 0);
             }
         }
     }
