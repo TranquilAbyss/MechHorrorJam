@@ -5,15 +5,18 @@ using UnityEngine;
 public class MechControls : MonoBehaviour
 {
     public Rigidbody rigid;
+    public LaserSelect laserSelect;
 
-    private float currentThrottleSpeed = 0;
+    public float currentThrottleSpeed = 0;
     public float throttleIncrement = 10;
     public float maxSpeed = 40;
     public float minSpeed = -40;
     public float moveForce = 20;
-
+    
     public float turnForce = 150;
+    public float currentTurnSpeed = 0;
     public float maxTurnSpeed = 0.5f;
+    public float minTurnSpeed = -0.5f;
     public bool isGrounded = true;
 
     // Start is called before the first frame update
@@ -25,6 +28,7 @@ public class MechControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Throttle
         if (Input.GetKeyDown(KeyCode.W))
         {
             currentThrottleSpeed += throttleIncrement;
@@ -39,6 +43,21 @@ public class MechControls : MonoBehaviour
             if (currentThrottleSpeed < minSpeed)
             {
                 currentThrottleSpeed = minSpeed;
+            }
+        }
+
+        // Laser Select
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (laserSelect.Hit.transform)
+            {
+                Task task = laserSelect.Hit.transform.GetComponent<Task>();
+                if (task)
+                {
+                    GameObject taskObject = laserSelect.Hit.transform.gameObject;
+                    Debug.Log(taskObject);
+                }
+
             }
         }
     }
@@ -59,11 +78,12 @@ public class MechControls : MonoBehaviour
             }
 
             // turning
-            if (rigid.angularVelocity.y < maxTurnSpeed && rigid.angularVelocity.y > -maxTurnSpeed)
+            if (rigid.angularVelocity.y < maxTurnSpeed && rigid.angularVelocity.y > minTurnSpeed)
             {
                 float preturnMagnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
                 
                 rigid.AddTorque(Input.GetAxis("Horizontal") * turnForce * transform.up);
+                currentTurnSpeed = rigid.angularVelocity.y;
 
                 //eliminates sliding during turns while maintiain speed.
                 Vector3 localVelocity = rigid.transform.InverseTransformDirection(rigid.velocity);    
