@@ -9,12 +9,13 @@ public class Pickup : MonoBehaviour
     public Vector3 pickupEuler = Vector3.zero;
     private Rigidbody rigid;
 
-    private 
+    private Collider[] colliders;
 
     // Start is called before the first frame update
     void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody>();
+        colliders = transform.GetComponentsInChildren<Collider>();
     }
 
     public void doPickup(Transform transformToFollow)
@@ -23,12 +24,19 @@ public class Pickup : MonoBehaviour
         transform.parent = transformToFollow;
         transform.localPosition = Vector3.zero + offset;
         transform.eulerAngles = pickupEuler;
-        transform.GetComponent<Collider>().enabled = false;
+        foreach(Collider collider in colliders)
+        {
+            collider.enabled = false;
+        }
         rigid.isKinematic = true;
     }
 
-    public void doDrop(Transform transformToFollow)
+    public void doDrop()
     {
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = true;
+        }
         isPickedUp = false;
         transform.parent = null;
         rigid.isKinematic = false;

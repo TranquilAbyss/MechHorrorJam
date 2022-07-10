@@ -22,8 +22,9 @@ public class MechControls : MonoBehaviour
     public float minTurnSpeed = -0.5f;
     public bool isGrounded = true;
 
-    public bool isHolding = false;
+    public bool isCarrying = false;
     public Transform carryPoint;
+    public Pickup objectCarried = null;
 
     // Start is called before the first frame update
     void Start()
@@ -49,21 +50,31 @@ public class MechControls : MonoBehaviour
         // Laser Select
         if (Input.GetMouseButtonDown(0))
         {
-            if (laserSelect.Hit.transform)
+            if (isCarrying)
             {
-                Task task = laserSelect.Hit.transform.GetComponent<Task>();
-                if (task)
+                objectCarried.doDrop();
+                isCarrying = false;
+            }
+            else
+            {
+                if (laserSelect.Hit.transform)
                 {
-                    GameObject taskObject = laserSelect.Hit.transform.gameObject;
-                    Debug.Log(taskObject);
-
-                    if (taskObject.name == "New Generator" && !task.complete && !isHolding)
+                    Task task = laserSelect.Hit.transform.GetComponent<Task>();
+                    if (task)
                     {
-                        taskObject.GetComponent<Pickup>().doPickup(carryPoint);
+                        GameObject taskObject = laserSelect.Hit.transform.gameObject;
+                        Debug.Log(taskObject);
+
+                        if (taskObject.name == "New Generator" && !task.complete && !isCarrying)
+                        {
+                            isCarrying = true;
+                            objectCarried = taskObject.GetComponent<Pickup>();
+                            objectCarried.doPickup(carryPoint);
+                        }
                     }
                 }
-
             }
+            
         }
     }
 
