@@ -12,12 +12,18 @@ public class MechControls : MonoBehaviour
     public float maxSpeed = 40;
     public float minSpeed = -40;
     public float moveForce = 20;
-    
+    public float throttleChangeCooldown = .5f;
+    public float currentThrottleChangeTimeStamp = 0;
+
+
     public float turnForce = 150;
     public float currentTurnSpeed = 0;
     public float maxTurnSpeed = 0.5f;
     public float minTurnSpeed = -0.5f;
     public bool isGrounded = true;
+
+    public bool isHolding = false;
+    public Transform carryPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -27,23 +33,17 @@ public class MechControls : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         // Throttle
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && Time.time >= currentThrottleChangeTimeStamp)
         {
-            currentThrottleSpeed += throttleIncrement;
-            if (currentThrottleSpeed > maxSpeed)
-            {
-                currentThrottleSpeed = maxSpeed;
-            }
+            currentThrottleChangeTimeStamp = Time.time + throttleChangeCooldown;
+            IncreaseThrottle();
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) && Time.time >= currentThrottleChangeTimeStamp)
         {
-            currentThrottleSpeed += -throttleIncrement;
-            if (currentThrottleSpeed < minSpeed)
-            {
-                currentThrottleSpeed = minSpeed;
-            }
+            currentThrottleChangeTimeStamp = Time.time + throttleChangeCooldown;
+            DecreaseThrottle();
         }
 
         // Laser Select
@@ -56,9 +56,32 @@ public class MechControls : MonoBehaviour
                 {
                     GameObject taskObject = laserSelect.Hit.transform.gameObject;
                     Debug.Log(taskObject);
+
+                    if (taskObject.name == "New Generator" && !task.complete && !isHolding)
+                    {
+                        taskObject.GetComponent<Pickup>().doPickup(carryPoint);
+                    }
                 }
 
             }
+        }
+    }
+
+    void IncreaseThrottle()
+    {
+        currentThrottleSpeed += throttleIncrement;
+        if (currentThrottleSpeed > maxSpeed)
+        {
+            currentThrottleSpeed = maxSpeed;
+        }
+    }
+
+    void DecreaseThrottle()
+    {
+        currentThrottleSpeed += -throttleIncrement;
+        if (currentThrottleSpeed < minSpeed)
+        {
+            currentThrottleSpeed = minSpeed;
         }
     }
     
@@ -67,7 +90,6 @@ public class MechControls : MonoBehaviour
         //TODO grounded check 
         if (isGrounded)
         {
-            // throttle
             if (currentThrottleSpeed > 0 && rigid.velocity.magnitude < currentThrottleSpeed)
             {
                 rigid.AddForce(moveForce * transform.forward);

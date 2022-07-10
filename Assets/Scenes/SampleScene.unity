@@ -3122,6 +3122,7 @@ Transform:
   - {fileID: 1676852147}
   - {fileID: 1143290392}
   - {fileID: 929565707}
+  - {fileID: 1599784081}
   m_Father: {fileID: 908105479}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5989,6 +5990,8 @@ MonoBehaviour:
   maxTurnSpeed: 0.5
   minTurnSpeed: -0.5
   isGrounded: 1
+  isHolding: 0
+  carryPoint: {fileID: 1599784081}
 --- !u!4 &908105479
 Transform:
   m_ObjectHideFlags: 0
@@ -6438,6 +6441,8 @@ MonoBehaviour:
   maxTurnSpeed: 0.5
   minTurnSpeed: -0.5
   isGrounded: 1
+  isHolding: 0
+  carryPoint: {fileID: 0}
 --- !u!54 &963194231
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9034,6 +9039,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592676040}
   m_Mesh: {fileID: 7096840139174466399, guid: 4514dd98822ea4e4ab47d4b872d6fafe, type: 3}
+--- !u!1 &1599784080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599784081}
+  m_Layer: 0
+  m_Name: CarryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599784081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599784080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -7.06, z: 11.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 447980154}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1625184990
 GameObject:
   m_ObjectHideFlags: 0
@@ -11202,6 +11238,21 @@ MonoBehaviour:
   taskName: Position New Generator
   completeDialogSegment: {fileID: 0}
   testComplete: 0
+--- !u!114 &2074462769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074462765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262d8615be7620e4ba01d846bad67236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPickedUp: 0
+  offset: {x: 0, y: 0, z: 0}
+  pickupEuler: {x: 0, y: 90, z: 0}
 --- !u!1 &2080390080
 GameObject:
   m_ObjectHideFlags: 0
