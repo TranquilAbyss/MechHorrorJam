@@ -23,7 +23,7 @@ public class Pickup : MonoBehaviour
         isPickedUp = true;
         transform.parent = transformToFollow;
         transform.localPosition = Vector3.zero + offset;
-        transform.eulerAngles = pickupEuler;
+        transform.localEulerAngles = pickupEuler;
         foreach(Collider collider in colliders)
         {
             collider.enabled = false;

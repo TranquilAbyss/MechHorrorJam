@@ -15,11 +15,12 @@ public class MechControls : MonoBehaviour
     public float throttleChangeCooldown = .5f;
     public float currentThrottleChangeTimeStamp = 0;
 
-
     public float turnForce = 150;
     public float currentTurnSpeed = 0;
     public float maxTurnSpeed = 0.5f;
     public float minTurnSpeed = -0.5f;
+
+    // Not implemented
     public bool isGrounded = true;
 
     public bool isCarrying = false;
@@ -59,11 +60,15 @@ public class MechControls : MonoBehaviour
             {
                 if (laserSelect.Hit.transform)
                 {
+                    if (laserSelect.Hit.transform.tag == "Bolt")
+                    {
+                        Destroy(laserSelect.Hit.transform.gameObject);
+                    }
+
                     Task task = laserSelect.Hit.transform.GetComponent<Task>();
                     if (task)
                     {
                         GameObject taskObject = laserSelect.Hit.transform.gameObject;
-                        Debug.Log(taskObject);
 
                         if (taskObject.name == "New Generator" && !task.complete && !isCarrying)
                         {
@@ -74,7 +79,6 @@ public class MechControls : MonoBehaviour
                     }
                 }
             }
-            
         }
     }
 
