@@ -55,6 +55,7 @@ public class MechControls : MonoBehaviour
             {
                 objectCarried.doDrop();
                 isCarrying = false;
+                objectCarried = null;
             }
             else
             {
@@ -64,19 +65,25 @@ public class MechControls : MonoBehaviour
                     {
                         Destroy(laserSelect.Hit.transform.gameObject);
                     }
-
-                    Task task = laserSelect.Hit.transform.GetComponent<Task>();
-                    if (task)
+                  
+                   
+                    if (!isCarrying && laserSelect.Hit.transform.GetComponent<Pickup>())
                     {
-                        GameObject taskObject = laserSelect.Hit.transform.gameObject;
+                        objectCarried = laserSelect.Hit.transform.GetComponent<Pickup>();
+                        isCarrying = true;
+                        objectCarried.doPickup(carryPoint);
 
-                        if (taskObject.name == "New Generator" && !task.complete && !isCarrying)
+                        Task task = laserSelect.Hit.transform.GetComponent<Task>();
+                        if (task && !task.complete)
                         {
-                            isCarrying = true;
-                            objectCarried = taskObject.GetComponent<Pickup>();
-                            objectCarried.doPickup(carryPoint);
+                            task.CompleteTask();
                         }
                     }
+                    else
+                    {
+                        Debug.LogWarning(gameObject.name + "does not have Pickup script");
+                    }
+
                 }
             }
         }
