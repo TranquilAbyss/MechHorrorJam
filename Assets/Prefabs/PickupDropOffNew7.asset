@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c70b86195f240f9458ab06fbcfc94172, type: 3}
-  m_Name: DialogData 2
+  m_Name: PickupDropOffNew7
   m_EditorClassIdentifier: 
   segment:
-  - name: Me
-    dialog: take this out
-  - name: Laffle
-    dialog: eat this food
-  - name: Pop
-    dialog: 'What is up '
+  - name: Engineer
+    dialog: "to install you\u2019ll need to (list things?)"
+    time: 5

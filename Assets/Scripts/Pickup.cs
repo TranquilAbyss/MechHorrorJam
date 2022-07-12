@@ -24,6 +24,8 @@ public class Pickup : MonoBehaviour
         transform.parent = transformToFollow;
         transform.localPosition = Vector3.zero + offset;
         transform.localEulerAngles = pickupEuler;
+        if(GetComponent<Task>())
+            GetComponent<Task>().CompleteTask();
         foreach(Collider collider in colliders)
         {
             collider.enabled = false;

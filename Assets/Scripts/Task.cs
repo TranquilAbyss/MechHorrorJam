@@ -22,8 +22,11 @@ public class Task : MonoBehaviour
 
     public void CompleteTask()
     {
-        complete = true;
-        if (completeDialogSegment != null && DialogManager.instance != null)
-            DialogManager.instance.PlayDialog(completeDialogSegment);
+        if (!complete)
+        {
+            complete = true;
+            if (completeDialogSegment != null && DialogManager.instance != null)
+                DialogManager.instance.PlayDialog(completeDialogSegment);
+        }
     }
 }

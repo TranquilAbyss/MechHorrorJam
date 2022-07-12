@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70b86195f240f9458ab06fbcfc94172, type: 3}
+  m_Name: StartDialog
+  m_EditorClassIdentifier: 
+  segment:
+  - name: Engineer
+    dialog: Come on Ace. Lets get this baby up and going.
+    time: 5
+  - name: Pilot
+    dialog: What a piece of Junk
+    time: 5
+  - name: Engineer
+    dialog: "I am doing the best I can with what corporate gives me, and it\u2019s
+      not much"
+    time: 5
+  - name: Pilot
+    dialog: ' I know I know'
+    time: 5
+  - name: 'Egineer: '
+    dialog: 'and everything is a go! '
+    time: 5
+  - name: 'Pilot:'
+    dialog: "Okay, let\u2019s do this!"
+    time: 5
+  - name: 'Engineer:'
+    dialog: " Get down to the old generator first. It\u2019s around back. "
+    time: 5

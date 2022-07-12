@@ -32,8 +32,9 @@ public class DialogManager : MonoBehaviour
         {
             name.text= sequence.segment[sequenceIndex].name;
             Dialog.text = sequence.segment[sequenceIndex].dialog;
+            float time = sequence.segment[sequenceIndex].time;
             sequenceIndex++;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(time);
         }
         container.SetActive(false);
     }

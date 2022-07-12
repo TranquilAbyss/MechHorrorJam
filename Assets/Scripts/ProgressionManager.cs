@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class ProgressionManager : MonoBehaviour
 {
+    public DialogSequence beginDialogSegment;
     public EventProgression[] eventProgressions;
     public int currentEventIndex;
     public EventProgression currentEventProgression;
@@ -13,6 +14,7 @@ public class ProgressionManager : MonoBehaviour
     {
         currentEventProgression = eventProgressions[0];
         currentEventProgression.beginEvent?.Invoke();
+        DialogManager.instance.PlayDialog(beginDialogSegment);
     }
 
     void Update()
@@ -30,7 +32,7 @@ public class ProgressionManager : MonoBehaviour
             currentEventProgression.completeEvent?.Invoke();
             
             if(currentEventProgression.beginDialogSegment != null && DialogManager.instance != null)
-                DialogManager.instance.PlayDialog(currentEventProgression.beginDialogSegment);
+                DialogManager.instance.PlayDialog( currentEventProgression.completeDialogSegment);
             
             if (currentEventIndex < eventProgressions.Length - 1)
             {
@@ -39,7 +41,7 @@ public class ProgressionManager : MonoBehaviour
                 currentEventProgression = eventProgressions[currentEventIndex];
                 eventProgressions[currentEventIndex].beginEvent?.Invoke();
                 if (currentEventProgression.completeDialogSegment != null && DialogManager.instance != null)
-                    DialogManager.instance.PlayDialog(currentEventProgression.completeDialogSegment);
+                    DialogManager.instance.PlayDialog(currentEventProgression.beginDialogSegment);
             }
         }
     }
