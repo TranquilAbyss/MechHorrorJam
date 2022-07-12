@@ -4980,11 +4980,16 @@ MonoBehaviour:
   maxSpeed: 40
   minSpeed: -40
   moveForce: 20
+  throttleChangeCooldown: 0.5
+  currentThrottleChangeTimeStamp: 0
   turnForce: 150
   currentTurnSpeed: 0
   maxTurnSpeed: 0.5
   minTurnSpeed: -0.5
   isGrounded: 1
+  isCarrying: 0
+  carryPoint: {fileID: 0}
+  objectCarried: {fileID: 0}
 --- !u!4 &908105479
 Transform:
   m_ObjectHideFlags: 0
@@ -5429,11 +5434,16 @@ MonoBehaviour:
   maxSpeed: 40
   minSpeed: -40
   moveForce: 20
+  throttleChangeCooldown: 0.5
+  currentThrottleChangeTimeStamp: 0
   turnForce: 150
   currentTurnSpeed: 0
   maxTurnSpeed: 0.5
   minTurnSpeed: -0.5
   isGrounded: 1
+  isCarrying: 0
+  carryPoint: {fileID: 0}
+  objectCarried: {fileID: 0}
 --- !u!54 &963194231
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7023,19 +7033,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378724534}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &1423478857
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8548922999802758347}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.024275888, y: 0.022036117, z: 0.00013258569}
-  m_Center: {x: -0.0021379446, y: 0.0010180601, z: 0.00006629284}
 --- !u!1 &1429488945
 GameObject:
   m_ObjectHideFlags: 0
@@ -16637,7 +16634,7 @@ Transform:
   m_GameObject: {fileID: 8548922999802758347}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -3.1682026, y: 0.47398472, z: 210.45732}
-  m_LocalScale: {x: 60338.33, y: 77598.52, z: 60338.33}
+  m_LocalScale: {x: 60338.33, y: 77598.52, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450652179230687}
@@ -23928,7 +23925,7 @@ GameObject:
   - component: {fileID: 4156878812806655033}
   - component: {fileID: 4882086716617648570}
   - component: {fileID: 5447331666172025635}
-  - component: {fileID: 1423478857}
+  - component: {fileID: 8548922999802758348}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -23936,6 +23933,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &8548922999802758348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548922999802758347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.024275888, y: 0.022036117, z: 0.00013258569}
+  m_Center: {x: -0.0021379446, y: 0.0010180601, z: 0.00006629284}
 --- !u!23 &8567716999466295126
 MeshRenderer:
   m_ObjectHideFlags: 0
