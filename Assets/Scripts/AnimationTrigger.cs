@@ -10,6 +10,7 @@ public class AnimationTrigger : MonoBehaviour
     public UnityEvent events;
     public float time = 10;
     public UnityEvent CompletEvents;
+    bool completed;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,11 @@ public class AnimationTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(WaitforCompleteEvent());
+        if (!completed)
+        {
+            StartCoroutine(WaitforCompleteEvent());
+            completed = true;
+        }
     }
 
     IEnumerator WaitforCompleteEvent()

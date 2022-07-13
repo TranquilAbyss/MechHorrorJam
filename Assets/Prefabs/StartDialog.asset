@@ -16,22 +16,29 @@ MonoBehaviour:
   - name: Engineer
     dialog: Come on Ace. Lets get this baby up and going.
     time: 5
+    blackScreen: 1
   - name: Pilot
     dialog: What a piece of Junk
-    time: 5
+    time: 2
+    blackScreen: 1
   - name: Engineer
     dialog: "I am doing the best I can with what corporate gives me, and it\u2019s
       not much"
     time: 5
+    blackScreen: 1
   - name: Pilot
     dialog: ' I know I know'
-    time: 5
+    time: 2
+    blackScreen: 1
   - name: 'Egineer: '
     dialog: 'and everything is a go! '
     time: 5
+    blackScreen: 1
   - name: 'Pilot:'
     dialog: "Okay, let\u2019s do this!"
     time: 5
+    blackScreen: 1
   - name: 'Engineer:'
     dialog: " Get down to the old generator first. It\u2019s around back. "
     time: 5
+    blackScreen: 0

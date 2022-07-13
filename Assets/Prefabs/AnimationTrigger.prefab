@@ -295,6 +295,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animation: {fileID: 5225219073075574500}
+  completeDialogSegment: {fileID: 0}
+  events:
+    m_PersistentCalls:
+      m_Calls: []
+  time: 40
+  CompletEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &561936840616642464
 BoxCollider:
   m_ObjectHideFlags: 0

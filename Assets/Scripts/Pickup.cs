@@ -20,17 +20,20 @@ public class Pickup : MonoBehaviour
 
     public void doPickup(Transform transformToFollow)
     {
-        isPickedUp = true;
-        transform.parent = transformToFollow;
-        transform.localPosition = Vector3.zero + offset;
-        transform.localEulerAngles = pickupEuler;
-        if(GetComponent<Task>())
-            GetComponent<Task>().CompleteTask();
-        foreach(Collider collider in colliders)
+        if (enabled)
         {
-            collider.enabled = false;
+            isPickedUp = true;
+            transform.parent = transformToFollow;
+            transform.localPosition = Vector3.zero + offset;
+            transform.localEulerAngles = pickupEuler;
+            if (GetComponent<Task>())
+                GetComponent<Task>().CompleteTask();
+            foreach (Collider collider in colliders)
+            {
+                collider.enabled = false;
+            }
+            rigid.isKinematic = true;
         }
-        rigid.isKinematic = true;
     }
 
     public void doDrop()

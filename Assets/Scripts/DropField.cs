@@ -12,7 +12,8 @@ public class DropField : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
+        taskCompleted = GetComponent<Task>();
     }
 
     private void FixedUpdate()

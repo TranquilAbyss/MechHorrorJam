@@ -10,6 +10,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private TMP_Text Dialog;
     [SerializeField] GameObject container;
     ProgressionManager progressionManager;
+    [SerializeField] GameObject blackImage;
 
     private void Awake()
     {
@@ -27,9 +28,10 @@ public class DialogManager : MonoBehaviour
     {
         container.SetActive(true);
         int sequenceIndex = 0;
-       
-        while(sequenceIndex < sequence.segment.Length)
+      
+        while (sequenceIndex < sequence.segment.Length)
         {
+            blackImage.SetActive(sequence.segment[sequenceIndex].blackScreen);
             name.text= sequence.segment[sequenceIndex].name;
             Dialog.text = sequence.segment[sequenceIndex].dialog;
             float time = sequence.segment[sequenceIndex].time;
@@ -37,5 +39,6 @@ public class DialogManager : MonoBehaviour
             yield return new WaitForSeconds(time);
         }
         container.SetActive(false);
+        blackImage.SetActive(false);
     }
 }
