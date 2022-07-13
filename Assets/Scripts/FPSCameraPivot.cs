@@ -16,8 +16,8 @@ public class FPSCameraPivot : MonoBehaviour {
 
 	private bool toggleMouseLock = false;
 
-	float currentRotationX = 0F;
-	float currentRotationY = 0F;
+	public float currentRotationX = 0F;
+	public float currentRotationY = 0F;
 
 	void Update ()
 	{

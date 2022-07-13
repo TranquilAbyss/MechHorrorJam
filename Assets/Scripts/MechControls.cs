@@ -26,6 +26,7 @@ public class MechControls : MonoBehaviour
     public bool isCarrying = false;
     public Transform carryPoint;
     public Pickup objectCarried = null;
+    public float intractDistance = 15;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,29 @@ public class MechControls : MonoBehaviour
             DecreaseThrottle();
         }
 
+
+
+        // Laser Color
+        if (laserSelect.Hit.transform)
+        {
+            Pickup pickable = laserSelect.Hit.transform.GetComponent<Pickup>();
+            Interact button = laserSelect.Hit.transform.GetComponent<Interact>();
+            if (((pickable && pickable.enabled) || 
+                (button && button.enabled)) &&
+                laserSelect.Hit.distance <= intractDistance)
+            {
+                // only run function if target is currently not hit.
+                if (!laserSelect.isTargetHit)
+                {
+                    laserSelect.ChangeToHitTargetColor();
+                }
+            }
+            else if (laserSelect.isTargetHit)
+            {
+                laserSelect.ChangeToDefaultColor();
+            }
+        }
+
         // Laser Select
         if (Input.GetMouseButtonDown(0))
         {
@@ -59,14 +83,22 @@ public class MechControls : MonoBehaviour
             }
             else
             {
-                if (laserSelect.Hit.transform)
+                if (laserSelect.Hit.transform && laserSelect.Hit.distance <= intractDistance)
                 {
+                    Interact interactable = laserSelect.Hit.transform.GetComponent<Interact>();
+                    //Interact
+                    if (interactable)
+                    {
+                        interactable.doInteract();
+                    }
+
+                    // Bolts
                     if (laserSelect.Hit.transform.tag == "Bolt")
                     {
                         Destroy(laserSelect.Hit.transform.gameObject);
                     }
-                  
                    
+                    // Carry 
                     if (!isCarrying && laserSelect.Hit.transform.GetComponent<Pickup>())
                     {
                         objectCarried = laserSelect.Hit.transform.GetComponent<Pickup>();
@@ -81,7 +113,7 @@ public class MechControls : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning(gameObject.name + "does not have Pickup script");
+                        Debug.Log(laserSelect.Hit.transform.name + " does not have Pickup script");
                     }
 
                 }
