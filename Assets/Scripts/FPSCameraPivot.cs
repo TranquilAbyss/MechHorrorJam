@@ -21,10 +21,10 @@ public class FPSCameraPivot : MonoBehaviour {
 
 	void Update ()
 	{
-		if (Input.GetKey(KeyCode.LeftControl)) toggleMouseLock = !toggleMouseLock;
+		if (Input.GetKeyDown(KeyCode.LeftControl)) toggleMouseLock = !toggleMouseLock;
 		if (toggleMouseLock) 
-		{   
-            Cursor.visible = false;
+		{
+			Cursor.lockState = CursorLockMode.Locked;
 
 			if (axes == RotationAxes.MouseXAndY)
 			{
@@ -54,13 +54,12 @@ public class FPSCameraPivot : MonoBehaviour {
 		}
 		else
 		{
-            Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
 		}	
 	}
 	
 	void Start ()
 	{
-
 		// Make the rigid body not change rotation
 		if (GetComponent<Rigidbody>())
 			GetComponent<Rigidbody>().freezeRotation = true;
