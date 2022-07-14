@@ -16,3 +16,8 @@ MonoBehaviour:
   - name: Engineer
     dialog: "to install you\u2019ll need to (list things?)"
     time: 5
+    blackScreen: 0
+  - name: Engineer
+    dialog: Good, now it says here to press the start button.
+    time: 5
+    blackScreen: 0

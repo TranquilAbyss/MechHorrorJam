@@ -22,6 +22,7 @@ public class DialogManager : MonoBehaviour
     public void PlayDialog(DialogSequence dialogSequence)
     {
         StartCoroutine(StartDialogSequence(dialogSequence));
+        Debug.Log("Plaay" + dialogSequence.name);
     }
 
     IEnumerator StartDialogSequence(DialogSequence sequence)
@@ -36,6 +37,7 @@ public class DialogManager : MonoBehaviour
             Dialog.text = sequence.segment[sequenceIndex].dialog;
             float time = sequence.segment[sequenceIndex].time;
             sequenceIndex++;
+            Debug.Log("run" + sequence.name);
             yield return new WaitForSeconds(time);
         }
         container.SetActive(false);

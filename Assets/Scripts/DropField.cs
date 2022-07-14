@@ -27,7 +27,7 @@ public class DropField : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+       // Debug.Log(other.name);
         if (other.gameObject.tag == target.tag)
         {
             // handle pickupable objects
