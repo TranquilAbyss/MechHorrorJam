@@ -29,6 +29,9 @@ public class MechControls : MonoBehaviour
     public Pickup objectCarried = null;
     public float intractDistance = 15;
 
+    //Sounds
+    public AudioClip collisionSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -138,7 +141,12 @@ public class MechControls : MonoBehaviour
             currentThrottleSpeed = minSpeed;
         }
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        AudioSource.PlayClipAtPoint(collisionSound, collision.GetContact(0).point);
+    }
+
     void FixedUpdate()
     {
         //TODO grounded check 
