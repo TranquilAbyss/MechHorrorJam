@@ -21,7 +21,11 @@ public class DropField : MonoBehaviour
         // wait for object to touch ground
         if (colliderRigid && colliderRigid.velocity.y == 0)
         {
-            colliderRigid.isKinematic = true;
+            float dis = Vector3.Distance(colliderRigid.transform.position, transform.position);
+            if (dis < 0.001f)
+            {
+                colliderRigid.isKinematic = true;
+            }
         }
     }
 
