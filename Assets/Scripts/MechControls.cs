@@ -17,6 +17,7 @@ public class MechControls : MonoBehaviour
 
     public float turnForce = 150;
     public float currentTurnSpeed = 0;
+    public float currentTurnThrottled = 0;
     public float maxTurnSpeed = 0.5f;
     public float minTurnSpeed = -0.5f;
 
@@ -48,8 +49,7 @@ public class MechControls : MonoBehaviour
             currentThrottleChangeTimeStamp = Time.time + throttleChangeCooldown;
             DecreaseThrottle();
         }
-
-
+        currentTurnThrottled = Input.GetAxis("Horizontal");
 
         // Laser Color
         if (laserSelect.Hit.transform)
@@ -158,7 +158,7 @@ public class MechControls : MonoBehaviour
             {
                 float preturnMagnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
                 
-                rigid.AddTorque(Input.GetAxis("Horizontal") * turnForce * transform.up);
+                rigid.AddTorque(currentTurnThrottled * turnForce * transform.up);
                 currentTurnSpeed = rigid.angularVelocity.y;
 
                 //eliminates sliding during turns while maintiain speed.
