@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Visibility))]
-public class HideCube : MonoBehaviour
+public class HideCollider : MonoBehaviour
 {
     Visibility vis;
 
@@ -27,6 +27,7 @@ public class HideCube : MonoBehaviour
 
             if (camera.gameObject.name != "PlayerCamera")
             {
+                Debug.Log(camera.gameObject.name);
 
                 if (camera.gameObject.name == "HeadCamera")
                 {

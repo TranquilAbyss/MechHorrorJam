@@ -87,10 +87,10 @@ public class Visibility : MonoBehaviour
     bool IsInCameraView(Camera c, GameObject go)
     {
         var planes = GeometryUtility.CalculateFrustumPlanes(c);
-        var point = go.transform.position;
+        //var point = go.transform.position;
         foreach (var plane in planes)
         {
-            if (plane.GetDistanceToPoint(point) < 0)
+            if (!GeometryUtility.TestPlanesAABB(planes, go.GetComponent<Collider>().bounds))
                 return false;
         }
         return true;
