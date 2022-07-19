@@ -6052,7 +6052,7 @@ MonoBehaviour:
   maximumY: 60
   currentRotationX: 0
   currentRotationY: 0
---- !u!54 &829314318 stripped
+--- !u!54 &829314323 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 736271386381017298, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
   m_PrefabInstance: {fileID: 736271385751367170}
@@ -9702,47 +9702,6 @@ Transform:
   m_Father: {fileID: 447980154}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1606047036 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 736271386532716628, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-  m_PrefabInstance: {fileID: 736271385751367170}
-  m_PrefabAsset: {fileID: 0}
---- !u!59 &1606047043
-HingeJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606047036}
-  m_ConnectedBody: {fileID: 829314318}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.4999847, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_UseSpring: 0
-  m_Spring:
-    spring: 0
-    damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 0
-  m_Limits:
-    min: 0
-    max: 0
-    bounciness: 0
-    bounceMinVelocity: 0.2
-    contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &1625184990
 GameObject:
   m_ObjectHideFlags: 0
@@ -12543,6 +12502,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 319819901}
     m_Modifications:
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_Anchor.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_UseLimits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_UseSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_Limits.max
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_Limits.min
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 829314323}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_EnablePreprocessing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_Limits.bounceMinVelocity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_ConnectedArticulationBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 736271386113368172, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
       propertyPath: m_Name
       value: DanglingCockpitObject
@@ -12591,8 +12602,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 736271386532716634, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+    - target: {fileID: 736271386532716635, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736271386532716635, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
 --- !u!1001 &2293284217526837621
 PrefabInstance:
