@@ -6,6 +6,7 @@ public class MechControls : MonoBehaviour
 {
     public Rigidbody rigid;
     public LaserSelect laserSelect;
+    public Animator anim;
 
     public float currentThrottleSpeed = 0;
     public float throttleIncrement = 10;
@@ -31,11 +32,25 @@ public class MechControls : MonoBehaviour
 
     //Sounds
     public AudioClip collisionSound;
+    public AudioSource rightFootSound;
+    public AudioSource leftFootSound;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public void PlayRightFootSound()
+    {
+        if(rigid.velocity.magnitude > 0.1f || Mathf.Abs(rigid.angularVelocity.y) > .1f)
+        rightFootSound.Play();
+    }
+
+    public void PlayLeftFootSound()
+    {
+        if (rigid.velocity.magnitude > 0.1f || Mathf.Abs(rigid.angularVelocity.y) > .1f)
+            leftFootSound.Play();
     }
 
     // Update is called once per frame
@@ -165,14 +180,16 @@ public class MechControls : MonoBehaviour
             if (rigid.angularVelocity.y < maxTurnSpeed && rigid.angularVelocity.y > minTurnSpeed)
             {
                 float preturnMagnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
-                
+
                 rigid.AddTorque(currentTurnThrottled * turnForce * transform.up);
                 currentTurnSpeed = rigid.angularVelocity.y;
 
                 //eliminates sliding during turns while maintiain speed.
-                Vector3 localVelocity = rigid.transform.InverseTransformDirection(rigid.velocity);    
+                Vector3 localVelocity = rigid.transform.InverseTransformDirection(rigid.velocity);
                 rigid.velocity = transform.forward * preturnMagnitude * Mathf.Sign(localVelocity.z) + new Vector3(0, rigid.velocity.y, 0);
             }
+
+            anim.SetFloat("Blend", Mathf.Abs((rigid.angularVelocity.y / (maxTurnSpeed * 2))) + (rigid.velocity.magnitude / maxSpeed));
         }
     }
 }
