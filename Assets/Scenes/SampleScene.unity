@@ -6052,11 +6052,6 @@ MonoBehaviour:
   maximumY: 60
   currentRotationX: 0
   currentRotationY: 0
---- !u!54 &829314323 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 736271386381017298, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-  m_PrefabInstance: {fileID: 736271385751367170}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &842689381
 GameObject:
   m_ObjectHideFlags: 0
@@ -6327,7 +6322,7 @@ GameObject:
   - component: {fileID: 908105477}
   - component: {fileID: 908105480}
   m_Layer: 0
-  m_Name: Mech 2
+  m_Name: f
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12502,58 +12497,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 319819901}
     m_Modifications:
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_Anchor.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_UseLimits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_UseSpring
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_Limits.max
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_Limits.min
-      value: -80
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_ConnectedBody
-      value: 
-      objectReference: {fileID: 829314323}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_ConnectedAnchor.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_EnablePreprocessing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_Limits.bounceMinVelocity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_ConnectedArticulationBody
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606047043, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_AutoConfigureConnectedAnchor
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 736271386113368172, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
       propertyPath: m_Name
       value: DanglingCockpitObject
@@ -12600,14 +12543,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 736271386113368173, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 736271386532716635, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_Mass
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 736271386532716635, guid: 51c827d8dbb642e488504ec7ed5f0918, type: 3}
-      propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

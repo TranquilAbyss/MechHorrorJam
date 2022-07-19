@@ -171,7 +171,7 @@ public class MechControls : MonoBehaviour
             {
                 rigid.AddForce(moveForce * transform.forward);
             }
-            else if (currentThrottleSpeed < 0 && rigid.velocity.magnitude > currentThrottleSpeed)
+            else if (currentThrottleSpeed < 0 && rigid.velocity.magnitude < Mathf.Abs(currentThrottleSpeed))
             {
                 rigid.AddForce(-moveForce * transform.forward);
             }
