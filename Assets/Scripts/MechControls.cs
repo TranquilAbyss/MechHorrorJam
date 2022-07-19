@@ -6,6 +6,7 @@ public class MechControls : MonoBehaviour
 {
     public Rigidbody rigid;
     public LaserSelect laserSelect;
+    public Animator anim;
 
     public float currentThrottleSpeed = 0;
     public float throttleIncrement = 10;
@@ -31,11 +32,25 @@ public class MechControls : MonoBehaviour
 
     //Sounds
     public AudioClip collisionSound;
+    public AudioSource rightFootSound;
+    public AudioSource leftFootSound;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public void PlayRightFootSound()
+    {
+        if(rigid.velocity.magnitude > 0.1f)
+        rightFootSound.Play();
+    }
+
+    public void PlayLeftFootSound()
+    {
+        if (rigid.velocity.magnitude > 0.1f)
+            leftFootSound.Play();
     }
 
     // Update is called once per frame
@@ -160,6 +175,8 @@ public class MechControls : MonoBehaviour
             {
                 rigid.AddForce(-moveForce * transform.forward);
             }
+
+            anim.SetFloat("Blend", rigid.velocity.magnitude / maxSpeed);
 
             // turning
             if (rigid.angularVelocity.y < maxTurnSpeed && rigid.angularVelocity.y > minTurnSpeed)
