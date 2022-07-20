@@ -56,7 +56,7 @@ public class Menu_Controller : MonoBehaviour {
 	}
 	
 	public void QuitGame () {
-		_audioSource.PlayOneShot(_audioClip);
+		//_audioSource.PlayOneShot(_audioClip);
 		#if !UNITY_EDITOR
 			Application.Quit();
 		#endif

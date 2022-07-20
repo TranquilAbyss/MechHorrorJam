@@ -14,14 +14,13 @@ public class FPSCameraPivot : MonoBehaviour {
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 
-	private bool toggleMouseLock = false;
+	public bool toggleMouseLock = false;
 
 	public float currentRotationX = 0F;
 	public float currentRotationY = 0F;
 
 	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.LeftControl)) toggleMouseLock = !toggleMouseLock;
 		if (toggleMouseLock) 
 		{
 			Cursor.lockState = CursorLockMode.Locked;
@@ -57,7 +56,12 @@ public class FPSCameraPivot : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 		}	
 	}
-	
+
+	public void ToggleMouseLockOn()
+    {
+		toggleMouseLock = true;
+	}
+
 	void Start ()
 	{
 		// Make the rigid body not change rotation
