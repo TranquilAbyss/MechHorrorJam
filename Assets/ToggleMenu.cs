@@ -9,6 +9,7 @@ public class ToggleMenu : MonoBehaviour
     public FPSCameraPivot upperBodyPivot;
     public GameObject MenuGraphics;
     public Text playButtonText;
+    public Text continueButtonText;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,8 @@ public class ToggleMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            playButtonText.text = "Continue";
+            playButtonText.enabled = false;
+            continueButtonText.enabled = true;
             mechControls.enabled = !mechControls.enabled;
             upperBodyPivot.toggleMouseLock = !upperBodyPivot.toggleMouseLock;
             MenuGraphics.SetActive(!MenuGraphics.activeSelf);

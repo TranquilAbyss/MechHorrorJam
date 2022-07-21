@@ -24,6 +24,8 @@ public class DropField : MonoBehaviour
             float dis = Vector3.Distance(colliderRigid.transform.position, transform.position);
             if (dis < 0.001f)
             {
+                colliderRigid.transform.localEulerAngles = transform.eulerAngles;
+                colliderRigid.transform.position = transform.position;
                 colliderRigid.isKinematic = true;
             }
         }

@@ -22,8 +22,10 @@ public class HideCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         foreach (Camera camera in vis.OnCameras())
         {
+            Debug.Log("test");
 
             if (camera.gameObject.name != "PlayerCamera")
             {
