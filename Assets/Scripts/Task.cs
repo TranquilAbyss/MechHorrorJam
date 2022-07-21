@@ -10,16 +10,37 @@ public class Task : MonoBehaviour
     public string taskName;
     public DialogSequence completeDialogSegment;
     public UnityEvent completeEvent;
+    public UnityEvent onTextEnd;
 
     [Header("Unit Test")]
     [SerializeField] bool testComplete;
+    [SerializeField] bool textEndCalled;
 
+
+    private void Awake()
+    {
+        DialogManager.OnTextEnd += OnTextEnd;
+    }
 
     private void Start()
     {
         if(StartTask)
         {
             CompleteTask();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        DialogManager.OnTextEnd -= OnTextEnd;
+    }
+
+    public void OnTextEnd(DialogSequence sequence)
+    {
+        if (sequence == completeDialogSegment)
+        {
+            onTextEnd?.Invoke();
+            textEndCalled = true;
         }
     }
 

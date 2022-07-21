@@ -12,6 +12,7 @@ public class DialogManager : MonoBehaviour
     ProgressionManager progressionManager;
     [SerializeField] GameObject blackImage;
     [SerializeField] AudioSource audioSource;
+    public static System.Action<DialogSequence> OnTextEnd;
 
     private void Awake()
     {
@@ -54,5 +55,6 @@ public class DialogManager : MonoBehaviour
         }
         container.SetActive(false);
         blackImage.SetActive(false);
+        OnTextEnd.Invoke(sequence);
     }
 }
