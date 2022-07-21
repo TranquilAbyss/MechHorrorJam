@@ -7,6 +7,8 @@ public class MechControls : MonoBehaviour
     public Rigidbody rigid;
     public LaserSelect laserSelect;
     public Animator anim;
+    public Light light;
+    public GameObject[] screens;
 
     public float currentThrottleSpeed = 0;
     public float throttleIncrement = 10;
@@ -38,7 +40,7 @@ public class MechControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     public void PlayRightFootSound()
@@ -52,6 +54,24 @@ public class MechControls : MonoBehaviour
         if (rigid.velocity.magnitude > 0.1f || Mathf.Abs(rigid.angularVelocity.y) > .1f)
             leftFootSound.Play();
     }
+
+    public void StartMarch()
+    {
+        StartCoroutine(StartMechRoutine());
+    }
+
+    IEnumerator StartMechRoutine()
+    {
+        yield return new WaitForSeconds(.5f);
+        foreach (var screen in screens)
+        {
+            screen.gameObject.SetActive(true);
+            yield return new WaitForSeconds(Random.Range(.4f,.7f));
+        }
+        yield return new WaitForSeconds(1f);
+        light.enabled = true;
+    }
+
 
     // Update is called once per frame
     void Update()
