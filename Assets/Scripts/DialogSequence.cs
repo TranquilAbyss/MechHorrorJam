@@ -16,4 +16,5 @@ public class DialogSegment
     public string dialog;
     public float time = 2;
     public bool blackScreen;
+    public AudioClip audioClip;
 }

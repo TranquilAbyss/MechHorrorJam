@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segment:
   - name: 'Engineer:'
-    dialog: Are you there? Once you are you can bring that old generator to that
-      guy and bring it back to the truck
+    dialog: 'Are you there? Once you are you can bring that old generator '
     time: 5
+    blackScreen: 0
   - name: 'Engineer:'
-    dialog: ' Oh right, you gotta unhook it first '
+    dialog: Fixing every power plant helps.
     time: 5
+    blackScreen: 0
   - name: 'Engineer:'
-    dialog: ' it says here you need to'
+    dialog: War should be over soon.
     time: 5
+    blackScreen: 0
+  - name: 'Pilot:'
+    dialog: "It sure doesn\u2019t sound like it! "
+    time: 5
+    blackScreen: 0

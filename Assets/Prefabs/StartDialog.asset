@@ -18,7 +18,7 @@ MonoBehaviour:
     time: 5
     blackScreen: 1
   - name: Pilot
-    dialog: What a piece of Junk
+    dialog: Hope this piece of junk stays together.
     time: 2
     blackScreen: 1
   - name: Engineer
@@ -33,11 +33,11 @@ MonoBehaviour:
   - name: 'Egineer: '
     dialog: 'and everything is a go! '
     time: 5
-    blackScreen: 1
+    blackScreen: 0
   - name: 'Pilot:'
     dialog: "Okay, let\u2019s do this!"
     time: 5
-    blackScreen: 1
+    blackScreen: 0
   - name: 'Engineer:'
     dialog: " Get down to the old generator first. It\u2019s around back. "
     time: 5

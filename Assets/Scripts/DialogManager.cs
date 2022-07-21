@@ -11,6 +11,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GameObject container;
     ProgressionManager progressionManager;
     [SerializeField] GameObject blackImage;
+    [SerializeField] AudioSource audioSource;
 
     private void Awake()
     {
@@ -36,6 +37,17 @@ public class DialogManager : MonoBehaviour
             name.text= sequence.segment[sequenceIndex].name;
             Dialog.text = sequence.segment[sequenceIndex].dialog;
             float time = sequence.segment[sequenceIndex].time;
+           
+            if(sequence.segment[sequenceIndex].audioClip != null)
+            {
+                audioSource.clip = sequence.segment[sequenceIndex].audioClip;
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.Stop();
+            }
+
             sequenceIndex++;
             Debug.Log("run" + sequence.name);
             yield return new WaitForSeconds(time);
