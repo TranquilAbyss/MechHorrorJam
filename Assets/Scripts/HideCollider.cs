@@ -25,8 +25,6 @@ public class HideCollider : MonoBehaviour
         
         foreach (Camera camera in vis.OnCameras())
         {
-            Debug.Log("test");
-
             if (camera.gameObject.name != "PlayerCamera")
             {
                 Debug.Log(camera.gameObject.name);

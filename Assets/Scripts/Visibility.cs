@@ -24,11 +24,8 @@ public class Visibility : MonoBehaviour
                 Physics.Raycast(ray, out hit);
                 Debug.DrawRay(camera.transform.position, dir);
 
-                Debug.Log(hit);
-
                 if (hit.collider && hit.collider.gameObject.GetHashCode() == gameObject.GetHashCode())
                 {
-                    Debug.Log("test");
                     cameras.Add(camera);
                 }
             }
