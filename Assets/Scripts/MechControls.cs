@@ -36,6 +36,7 @@ public class MechControls : MonoBehaviour
     public AudioClip collisionSound;
     public AudioSource rightFootSound;
     public AudioSource leftFootSound;
+    public AudioSource interactSound;
 
     // Start is called before the first frame update
     void Start()
@@ -118,6 +119,7 @@ public class MechControls : MonoBehaviour
                 objectCarried.doDrop();
                 isCarrying = false;
                 objectCarried = null;
+                interactSound.Play();
             }
             else
             {
@@ -128,6 +130,7 @@ public class MechControls : MonoBehaviour
                     if (interactable)
                     {
                         interactable.doInteract();
+                        interactSound.Play();
                     }
 
                     // Bolts
@@ -135,14 +138,14 @@ public class MechControls : MonoBehaviour
                     {
                         Destroy(laserSelect.Hit.transform.gameObject);
                     }
-                   
+                    
                     // Carry 
                     if (!isCarrying && laserSelect.Hit.transform.GetComponent<Pickup>())
                     {
                         objectCarried = laserSelect.Hit.transform.GetComponent<Pickup>();
                         isCarrying = true;
                         objectCarried.doPickup(carryPoint);
-
+                        interactSound.Play();
                         Task task = laserSelect.Hit.transform.GetComponent<Task>();
                         if (task && !task.complete)
                         {
