@@ -38,6 +38,8 @@ public class MechControls : MonoBehaviour
     public AudioSource leftFootSound;
     public AudioSource interactSound;
 
+    public DialogSequence postStartUpDialog;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,8 @@ public class MechControls : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         light.enabled = true;
+        yield return new WaitForSeconds(4f);
+        DialogManager.instance.PlayDialog(postStartUpDialog);
     }
 
 
