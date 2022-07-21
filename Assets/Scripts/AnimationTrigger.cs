@@ -37,7 +37,10 @@ public class AnimationTrigger : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (completeDialogSegment != null && DialogManager.instance != null)
             DialogManager.instance.PlayDialog(completeDialogSegment);
-        animation.Play();
+        if (animation)
+        {
+            animation.Play();
+        }
         gameObject.GetComponent<Collider>().enabled = false;
         events?.Invoke();
     }
