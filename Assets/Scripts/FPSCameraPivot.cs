@@ -19,6 +19,9 @@ public class FPSCameraPivot : MonoBehaviour {
 	public float currentRotationX = 0F;
 	public float currentRotationY = 0F;
 
+	public AudioSource rotatoinSound;
+	private Quaternion previousQuaternion;
+
 	void Update ()
 	{
 		if (toggleMouseLock) 
@@ -50,6 +53,18 @@ public class FPSCameraPivot : MonoBehaviour {
 				
 				transform.localEulerAngles = new Vector3(-currentRotationY, transform.localEulerAngles.y, 0);
 			}
+
+			if(previousQuaternion != transform.rotation)
+            {
+				if(!rotatoinSound.isPlaying)
+					rotatoinSound.Play();
+			}				
+			else
+            {
+				rotatoinSound.Stop();
+			}				
+
+			previousQuaternion = transform.rotation;
 		}
 		else
 		{
