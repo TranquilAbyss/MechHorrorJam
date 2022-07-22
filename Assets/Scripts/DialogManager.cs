@@ -13,6 +13,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GameObject blackImage;
     [SerializeField] AudioSource audioSource;
     public static System.Action<DialogSequence> OnTextEnd;
+    public bool IsPlaying { get; private set; }
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class DialogManager : MonoBehaviour
     {
         container.SetActive(true);
         int sequenceIndex = 0;
-      
+        IsPlaying = true;
         while (sequenceIndex < sequence.segment.Length)
         {
             blackImage.SetActive(sequence.segment[sequenceIndex].blackScreen);
@@ -55,6 +56,7 @@ public class DialogManager : MonoBehaviour
         }
         container.SetActive(false);
         blackImage.SetActive(false);
+        IsPlaying = false;
         OnTextEnd.Invoke(sequence);
     }
 }

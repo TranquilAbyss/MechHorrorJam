@@ -11,6 +11,9 @@ public class AnimationTrigger : MonoBehaviour
     public float time = 10;
     public UnityEvent CompletEvents;
     bool completed;
+    public bool distanceTrigger;
+    public Transform distranceTransform;
+    public float distance;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,11 @@ public class AnimationTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // transform.localEulerAngles = 
+       if(distanceTrigger && Vector3.Distance(transform.position, distranceTransform.position) < distance && !completed && !DialogManager.instance.IsPlaying)
+        {
+            StartCoroutine(WaitforCompleteEvent());
+            completed = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,5 +50,10 @@ public class AnimationTrigger : MonoBehaviour
         }
         gameObject.GetComponent<Collider>().enabled = false;
         events?.Invoke();
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position,distance);
     }
 }
